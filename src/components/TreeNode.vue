@@ -1,32 +1,32 @@
 <template>
   <li
     role="treeitem"
-    class="tree-node"
+    class="liquor-tree-node"
     :data-id="node.id"
     :class="nodeClass"
     @mousedown.stop="handleMouseDown"
   >
     <div
-      class="tree-content"
+      class="liquor-tree-content"
       :style="[options.direction == 'ltr' ? {'padding-left': padding} : {'padding-right': padding}]"
       @click.stop="select"
     >
       <i
-        class="tree-arrow"
+        class="liquor-tree-arrow"
         :class="[{'expanded': node.states.expanded, 'has-child': node.children.length || node.isBatch}, options.direction]"
         @click.stop="toggleExpand"
       />
 
       <i
         v-if="options.checkbox"
-        class="tree-checkbox"
+        class="liquor-tree-checkbox"
         :class="{'checked': node.states.checked, 'indeterminate': node.states.indeterminate}"
         @click.stop="check"
       />
 
       <span
         ref="anchor"
-        class="tree-anchor"
+        class="liquor-tree-anchor"
         tabindex="-1"
         @focus="onNodeFocus"
         @dblclick="tree.$emit('node:dblclick', node)"
@@ -38,7 +38,7 @@
     <transition name="l-fade">
       <ul
         v-if="hasChildren() && node.states.expanded"
-        class="tree-children"
+        class="liquor-tree-children"
       >
         <node
           v-for="child in visibleChildren"
@@ -216,7 +216,7 @@
 </script>
 
 <style>
-  .tree-node {
+  .liquor-tree-node {
     white-space: nowrap;
     display: flex;
     flex-direction: column;
@@ -224,7 +224,7 @@
     box-sizing: border-box;
   }
 
-  .tree-content {
+  .liquor-tree-content {
     display: flex;
     align-items: center;
     padding: 3px;
@@ -233,19 +233,19 @@
     box-sizing: border-box;
   }
 
-  .tree-node:not(.selected) > .tree-content:hover {
+  .liquor-tree-node:not(.selected) > .liquor-tree-content:hover {
     background: #f6f8fb;
   }
 
-  .tree-node.selected > .tree-content {
+  .liquor-tree-node.selected > .liquor-tree-content {
     background-color: #e7eef7;
   }
 
-  .tree-node.disabled > .tree-content:hover {
+  .liquor-tree-node.disabled > .liquor-tree-content:hover {
     background: inherit;
   }
 
-  .tree-arrow {
+  .liquor-tree-arrow {
     flex-shrink: 0;
     height: 30px;
     cursor: pointer;
@@ -253,13 +253,13 @@
     width: 0;
   }
 
-  .tree-arrow.has-child {
+  .liquor-tree-arrow.has-child {
     margin-left: 0;
     width: 30px;
     position: relative;
   }
 
-  .tree-arrow.has-child:after {
+  .liquor-tree-arrow.has-child:after {
     border: 1.5px solid #494646;
     position: absolute;
     border-left: 0;
@@ -273,7 +273,7 @@
     transform-origin: center;
   }
 
-  .tree-arrow.has-child.rtl:after {
+  .liquor-tree-arrow.has-child.rtl:after {
     border: 1.5px solid #494646;
     position: absolute;
     border-right: 0;
@@ -287,11 +287,11 @@
     transform-origin: center;
   }
 
-  .tree-arrow.expanded.has-child:after {
+  .liquor-tree-arrow.expanded.has-child:after {
     transform: rotate(45deg) translateY(-50%) translateX(-5px);
   }
 
-  .tree-checkbox {
+  .liquor-tree-checkbox {
     flex-shrink: 0;
     position: relative;
     width: 30px;
@@ -303,20 +303,20 @@
     transition: border-color .25s, background-color .25s;
   }
 
-  .tree-checkbox:after,
-  .tree-arrow:after {
+  .liquor-tree-checkbox:after,
+  .liquor-tree-arrow:after {
     position: absolute;
     display: block;
     content: "";
   }
 
-  .tree-checkbox.checked,
-  .tree-checkbox.indeterminate {
+  .liquor-tree-checkbox.checked,
+  .liquor-tree-checkbox.indeterminate {
     background-color: #3a99fc;
     border-color: #218eff;
   }
 
-  .tree-checkbox.checked:after {
+  .liquor-tree-checkbox.checked:after {
     box-sizing: content-box;
     border: 1.5px solid #fff; /* probably width would be rounded in most cases */
     border-left: 0;
@@ -330,11 +330,11 @@
     transform-origin: center;
   }
 
-  .tree-checkbox.checked:after {
+  .liquor-tree-checkbox.checked:after {
     transform: rotate(45deg) scaleY(1);
   }
 
-  .tree-checkbox.indeterminate:after {
+  .liquor-tree-checkbox.indeterminate:after {
     background-color: #fff;
     top: 50%;
     left: 20%;
@@ -342,7 +342,7 @@
     height: 2px;
   }
 
-  .tree-anchor {
+  .liquor-tree-anchor {
     flex-grow: 2;
     outline: none;
     display: flex;
@@ -358,11 +358,11 @@
     user-select: none;
   }
 
-  .tree-node.selected > .tree-content > .tree-anchor {
+  .liquor-tree-node.selected > .liquor-tree-content > .liquor-tree-anchor {
     outline: none;
   }
 
-  .tree-node.disabled > .tree-content > .tree-anchor {
+  .liquor-tree-node.disabled > .liquor-tree-content > .liquor-tree-anchor {
     color: #989191;
     background: #fff;
     opacity: .6;
@@ -370,7 +370,7 @@
     outline: none;
   }
 
-  .tree-input {
+  .liquor-tree-input {
     display: block;
     width: 100%;
     height: 24px;
@@ -391,35 +391,35 @@
   }
 
 
-  .tree--small .tree-anchor {
+  .tree--small .liquor-tree-anchor {
     line-height: 19px;
   }
 
-  .tree--small .tree-checkbox {
+  .tree--small .liquor-tree-checkbox {
     width: 23px;
     height: 23px;
   }
 
-  .tree--small .tree-arrow {
+  .tree--small .liquor-tree-arrow {
     height: 23px;
   }
 
-  .tree--small .tree-checkbox.checked:after {
+  .tree--small .liquor-tree-checkbox.checked:after {
     left: 7px;
     top: 3px;
     height: 11px;
     width: 5px;
   }
 
-  .tree-node.has-child.loading > .tree-content > .tree-arrow,
-  .tree-node.has-child.loading > .tree-content > .tree-arrow:after {
+  .liquor-tree-node.has-child.loading > .liquor-tree-content > .liquor-tree-arrow,
+  .liquor-tree-node.has-child.loading > .liquor-tree-content > .liquor-tree-arrow:after {
     border-radius: 50%;
     width: 15px;
     height: 15px;
     border: 0;
   }
 
-  .tree-node.has-child.loading > .tree-content > .tree-arrow {
+  .liquor-tree-node.has-child.loading > .liquor-tree-content > .liquor-tree-arrow {
     font-size: 3px;
     position: relative;
     border-top: 1.1em solid rgba(45,45,45, 0.2);

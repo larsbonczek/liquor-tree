@@ -2,17 +2,17 @@
   <component
     :is="tag"
     role="tree"
-    :class="{'tree': true, 'tree-loading': this.loading, 'tree--draggable' : !!this.draggableNode}"
+    :class="{'liquor-tree': true, 'liquor-tree-loading': this.loading, 'tree--draggable' : !!this.draggableNode}"
   >
     <template v-if="filter && matches.length == 0">
       <div
-        class="tree-filter-empty"
+        class="liquor-tree-filter-empty"
         v-html="opts.filter.emptyText"
       />
     </template>
     <template v-else>
       <ul
-        class="tree-root"
+        class="liquor-tree-root"
         @dragstart="onDragStart"
       >
         <template v-if="opts.filter.plainList && matches.length > 0">
@@ -140,7 +140,7 @@
       visibleModel() {
         return this.model.filter(function(node) {
           return node && node.visible()
-        }) 
+        })
       },
       visibleMatches() {
         return this.matches.filter(function(node) {
@@ -148,7 +148,7 @@
         })
       }
     },
-    
+
     watch: {
       filter (term) {
         this.tree.filter(term)
@@ -158,23 +158,23 @@
 </script>
 
 <style>
-  .tree {
+  .liquor-tree {
     overflow: auto;
   }
 
-  .tree-root,
-  .tree-children {
+  .liquor-tree-root,
+  .liquor-tree-children {
     list-style: none;
     padding: 0;
   }
 
-  .tree > .tree-root,
-  .tree > .tree-filter-empty {
+  .liquor-tree > .liquor-tree-root,
+  .liquor-tree > .liquor-tree-filter-empty {
     padding: 3px;
     box-sizing: border-box;
   }
 
-  .tree.tree--draggable .tree-node:not(.selected) > .tree-content:hover {
+  .liquor-tree.tree--draggable .liquor-tree-node:not(.selected) > .liquor-tree-content:hover {
     background: transparent;
   }
 
@@ -185,12 +185,12 @@
     z-index: 1;
   }
 
-  .drag-on > .tree-content {
+  .drag-on > .liquor-tree-content {
     background: #fafcff;
     outline: 1px solid #7baff2;
   }
 
-  .drag-above > .tree-content::before, .drag-below > .tree-content::after {
+  .drag-above > .liquor-tree-content::before, .drag-below > .liquor-tree-content::after {
     display: block;
     content: '';
     position: absolute;
@@ -207,12 +207,12 @@
     border-radius: 0;
   }
 
-  .drag-above > .tree-content::before {
+  .drag-above > .liquor-tree-content::before {
     top: 0;
     transform: translateY(-50%);
   }
 
-  .drag-below > .tree-content::after {
+  .drag-below > .liquor-tree-content::after {
     bottom: 0;
     transform: translateY(50%);
   }

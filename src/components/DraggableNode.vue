@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tree-dragnode"
+    class="liquor-tree-dragnode"
     :style="style"
   >
     {{ target.node.text }}
@@ -24,7 +24,7 @@
 </script>
 
 <style>
-  .tree-dragnode {
+  .liquor-tree-dragnode {
     padding: 10px;
     border: 1px solid #e7eef7;
     position: fixed;
